@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:fitsSystemWindows="true"
+
+    tools:context="com.keyontech.woot1.Activities.DetailsActivity"
+    >
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/nav_app_bar_ActivityDetails_v2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_bar_height"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+
+
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/nav_toolbar_layout_ActivityDetails_v2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:toolbarId="@+id/toolbarActivityDetails_v2">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbarActivityDetails_v2"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+            <ProgressBar
+                android:id="@+id/progressBar_ActivityDetails"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_weight="1"
+                />
+
+            <!--Photo viewPager Margin made 60 so nav bar hamburger would work-->
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewPager_ActivityDetails_v2"
+                android:layout_marginBottom="60dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <!--viewPager indicator buttons had to put him here rather than below because the nav button wont work unless this is inside the viewPager-->
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/tab_layout_viewpager_indicator_dots_ActivityMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    app:tabBackground="@drawable/tab_selector"
+                    app:tabGravity="center"
+                    app:tabIndicatorHeight="0dp"
+                    />
+
+            </android.support.v4.view.ViewPager>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <!--<include layout="@layout/content_activity_nav_drawer" />-->
+    <include
+        android:id="@+id/include"
+        layout="@layout/activity_details_include_content_v2" />
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabbutton_ActivityDetails_Deal_URL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        app:backgroundTint="@android:color/holo_green_light"
+
+        app:layout_anchor="@id/nav_app_bar_ActivityDetails_v2"
+        app:layout_anchorGravity="bottom|end"
+        app:rippleColor="@android:color/holo_green_dark"
+        app:srcCompat="@drawable/ic_buy" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabbutton_ActivityDetails_Discussion_URL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        app:backgroundTint="@android:color/darker_gray"
+
+        app:layout_anchor="@+id/nav_app_bar_ActivityDetails_v2"
+        app:layout_anchorGravity="left|bottom"
+        app:rippleColor="@android:color/holo_green_dark"
+        app:srcCompat="@drawable/discussion_url" />
+    <!--app:rippleColor="@color/colorPrimaryDark"-->
+    <!--app:backgroundTint="@android:color/background_dark"-->
+
+</android.support.design.widget.CoordinatorLayout>

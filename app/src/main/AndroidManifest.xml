@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.keyontech.woot1">
+
+    <!--Job Scheduler Requirements-->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        >
+
+        <!--main activity-->
+        <activity
+            android:name=".ActivityMain"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--main activity-->
+        <activity
+            android:name=".Activities.DetailsActivity"
+            android:label="Details"
+            android:launchMode="singleTop">
+            >
+            <!--use this to auto add the back button on top left-->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ActivityMain"
+                />
+        </activity>
+
+        <!-- About screen -->
+        <activity
+            android:name=".Activities.ActivityAbout"
+            android:label="About"
+            android:launchMode="singleTop">
+
+            <!-- use this to auto add the back button on top left -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ActivityMain" />
+        </activity>
+
+        <!-- GO TO URL screen -->
+        <activity
+            android:name=".Activities.ActivityGoToSite"
+            android:label=""
+            android:launchMode="singleTop">
+
+            <!-- use this to auto add the back button on top left -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.keyontech.woot1.Activities.DetailsActivity" />
+        </activity>
+
+        <!--Job Scheduler Requirements-->
+        <service android:name=".Services.MJobScheduler"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="true"
+            />
+
+    </application>
+</manifest>

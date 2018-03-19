@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+
+    android:layout_marginEnd="4dp"
+    android:layout_marginStart="4dp"
+    android:layout_marginTop="4dp"
+    android:paddingTop="4dp"
+
+    >
+
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/relativeLayout1"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--&gt;-->
+        <!--<TextView-->
+            <!--android:id="@+id/textView_Site_Title"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentStart="true"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:text="textView_Site_Title" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/textView_Price"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:text="textView_Price" />-->
+    <!--</RelativeLayout>-->
+
+
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/relativeLayout2"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_below="@+id/relativeLayout1"-->
+        <!--android:layout_marginTop="38dp"-->
+        <!--&gt;-->
+
+        <!--<android.support.v4.view.ViewPager-->
+            <!--android:id="@+id/viewPager_Main"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="55dp"-->
+            <!--&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;viewPager indicator buttons had to put him here rather than below because the nav button wont work unless this is inside the viewPager&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;<android.support.design.widget.TabLayout&ndash;&gt;-->
+                <!--&lt;!&ndash;android:id="@+id/tab_layout_viewpager_indicator_dots_ActivityMain"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+
+                <!--&lt;!&ndash;app:tabBackground="@drawable/tab_selector"&ndash;&gt;-->
+                <!--&lt;!&ndash;app:tabGravity="center"&ndash;&gt;-->
+                <!--&lt;!&ndash;app:tabIndicatorHeight="0dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;/>&ndash;&gt;-->
+
+        <!--</android.support.v4.view.ViewPager>-->
+
+
+    <!--</RelativeLayout>-->
+
+
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/relativeLayout3"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_below="@+id/relativeLayout2"-->
+        <!--android:layout_marginTop="38dp"-->
+        <!--&gt;-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/textView_Item_Title"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:layout_alignParentStart="true"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:text="Item Title"-->
+            <!--android:textStyle="italic" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/textView_Item_Condition"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+
+            <!--android:layout_alignParentStart="true"-->
+            <!--android:layout_below="@+id/textView_Item_Title"-->
+            <!--android:text=""-->
+            <!--android:textStyle="italic"-->
+            <!--/>-->
+
+        <!--<View-->
+            <!--android:id="@+id/_BlackBar"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="2dp"-->
+            <!--android:layout_alignParentStart="true"-->
+
+            <!--android:layout_below="@+id/textView_Item_Condition"-->
+            <!--android:background="@android:color/black"-->
+
+            <!--/>-->
+
+    <!--</RelativeLayout>-->
+
+
+</RelativeLayout>
