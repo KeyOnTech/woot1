@@ -71,6 +71,7 @@ class DetailsActivity: AppCompatActivity() {
 
                         var strOutput = ""
                         strOutput += " \n \n  <br/> <h1> " + deal.Title + " </h1> "
+                        strOutput += " \n \n  <b> Price: </b>" + wootPriceLowtoHigh(offer)
                         strOutput += " \n \n  <br/> <br/> <b> Features: </b>" + offer.Features
                         strOutput += " \n \n  <br/> <br/> <b> Specs: </b>" + offer.Specs
                         strOutput += " \n \n  <br/> <br/> <hr /> "

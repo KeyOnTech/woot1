@@ -20,6 +20,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_failed_to_load_image"
 
-        android:scaleType="fitXY"
+        android:scaleType="fitCenter"
         />
+    <!--android:scaleType="fitXY"-->
+    <!-- scale the image stretch -->
 </android.support.constraint.ConstraintLayout>

@@ -49,7 +49,7 @@ class FragmentViewPager1 : Fragment() {
         /*** color codes: Red: Network / Blue: Disk / Yellow: Memory - dev preferred not on live apk */
         picassoImage.setIndicatorsEnabled(true)
 
-        println("load this photo " + args.getString(FRAG_ARG_PHOTO_URI))
+//        println("load this photo " + args.getString(FRAG_ARG_PHOTO_URI))
 
         if (args.getString(FRAG_ARG_PHOTO_URI) != null && args.getString(FRAG_ARG_PHOTO_URI).isNotEmpty()) {
             picassoImage

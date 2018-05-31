@@ -45,7 +45,7 @@ val FRAG_ARG_PHOTO_URI = "FRAG_ARG_PHOTO_URI"
 
 val PREF_KEY_WOOT1_SHOW_JOBSCHEDULER_NOTIFICATION = "PREF_KEY_WOOT1_SHOW_JOBSCHEDULER_NOTIFICATION"
 val PREF_KEY_WOOT1_WOOT_JSON_RESPONSE = "PREF_KEY_WOOT1_WOOT_JSON_RESPONSE"
-val PREF_KEY_WOOT1_MEH_DEAL_STRING = "PREF_KEY_WOOT1_MEH_DEAL_STRING"
+//val PREF_KEY_WOOT1_MEH_DEAL_STRING = "PREF_KEY_WOOT1_MEH_DEAL_STRING"
 val PREF_KEY_WOOT1_SHOW_NAV_DRAWER_ONSTART = "PREF_KEY_WOOT1_SHOW_NAV_DRAWER_ONSTART"
 
 /*** this is used for the notification large image */
@@ -134,9 +134,11 @@ fun scheduleNotificationJob(pContext: Context) {
 //    /*** USE FOR TESTING ONLY 5 end */
 //    jobInfoBuilder.setMinimumLatency(JS_SCHEDULE_TEST_TIMER) // testing 5 sec.s  YOUR_TIME_INTERVAL comment out setPeriodic to use this
 //    println("444000 - TesT - Time Reached = $JS_SCHEDULE_TEST_TIMER miliseconds")
+//    /*** USE FOR TESTING ONLY 5 end */
 
     /*** USE FOR LIVE recurring time interval, not more than once per period */
     jobInfoBuilder.setPeriodic(JS_SCHEDULE_TIMER)
+    /*** USE FOR LIVE recurring time interval, not more than once per period */
 
     /*** require internet */
     jobInfoBuilder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
@@ -164,41 +166,41 @@ fun cancelNotificationJobScheduled(pContext: Context) {
 }
 
 fun wootNotificaitionText(pContext: Context, jsonResponse: String): String {
+    var notificationText = "New: "
+
     /*** get shared preferences */
     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(pContext)
     var wootSavedJSONResponse = sharedPreferences.getString(PREF_KEY_WOOT1_WOOT_JSON_RESPONSE, "")
-    var notificationText = "New: "
+
+    /*** save string to preferences */
+    PreferenceManager.getDefaultSharedPreferences(pContext)
+            .edit()
+            .putString(PREF_KEY_WOOT1_WOOT_JSON_RESPONSE, jsonResponse)
+            .apply()
+
+
 
     if (wootSavedJSONResponse.isNullOrEmpty()) {
-//        /*** save string to preferences */
-//        PreferenceManager.getDefaultSharedPreferences(pContext)
-//                .edit()
-//                .putString(PREF_KEY_WOOT1_WOOT_JSON_RESPONSE, jsonResponse)
-//                .apply()
+        /*** first time checking json response */
+
+
         var gson = GsonBuilder().serializeNulls().create()
         var woot: List<ModelWootDeal> = gson.fromJson(jsonResponse, object : TypeToken<List<ModelWootDeal>>() {}.type)
         var wootSorted = woot.sortedWith(compareBy({ it.Site}))
 
+        /*** parse JSON return */
         wootSorted.forEach {
             var deal = it
 
             if (deal != null) {
-                println("Site = " + deal.Id)
-                println("Site = " + deal.Site)
-                println("deal = " + deal.toString())
-                /*** get shared preferences */
-//                            var showNotification = sharedPreferences.getBoolean(PREF_KEY_WOOT1_SHOW_JOBSCHEDULER_NOTIFICATION, false)
-
-                /*** save string to preferences */
-                PreferenceManager.getDefaultSharedPreferences(pContext)
-                        .edit()
-                        .putString(PREF_KEY_WOOT1_WOOT_JSON_RESPONSE, jsonResponse)
-                        .apply()
-
-                notificationText += ", " + deal.Site
+                notificationText += deal.Site + ", "
             }
         }
+
+        println("4444-912")
     }else {
+        /*** compare last json response to this one */
+
         var gson = GsonBuilder().serializeNulls().create()
         var woot: List<ModelWootDeal> = gson.fromJson(jsonResponse, object : TypeToken<List<ModelWootDeal>>() {}.type)
         var wootSorted = woot.sortedWith(compareBy({ it.Site}))
@@ -208,6 +210,7 @@ fun wootNotificaitionText(pContext: Context, jsonResponse: String): String {
         savedWootSorted.forEach {
             var savedSite = it.Site
             var savedId = it.Id
+//            savedId = "737d4f01-1742-43c0-a9fc-ee0b5bf0e05e" // testing
 
             wootSorted.forEach {
                 var deal = it
@@ -215,32 +218,19 @@ fun wootNotificaitionText(pContext: Context, jsonResponse: String): String {
                 if (deal != null) {
                     if (it.Site.equals(savedSite, true))
                     {
-                        if (it.Id.equals(savedId, true)) {
-                            println("Site = " + deal.Id)
-                            println("Site = " + deal.Site)
-                            println("deal = " + deal.toString())
-                            /*** get shared preferences */
-                            //            var showNotification = sharedPreferences.getBoolean(PREF_KEY_WOOT1_SHOW_JOBSCHEDULER_NOTIFICATION, false)
-
-                            if (notificationText.equals("New: ")) {
-                                notificationText += deal.Site
-                            }else{
-                                notificationText += ", " + deal.Site
-                            }
+                        if (!it.Id.equals(savedId, true)) {
+                            notificationText += deal.Site + ", "
                         }
                     }
                 }
             }
         }
 
-        /*** save string to preferences */
-        PreferenceManager.getDefaultSharedPreferences(pContext)
-                .edit()
-                .putString(PREF_KEY_WOOT1_WOOT_JSON_RESPONSE, jsonResponse)
-                .apply()
+        println("4444-934")
     }
 
     notificationText = notificationText.replace(CONDITION_DEAL_SITE_TRIM_CONDITION,"",true)
+    println( "4444-901 - notificationText = " + notificationText )
     return notificationText
 }
 
@@ -249,8 +239,10 @@ fun showJobNotification(pContext: Context): Boolean {
     var showNotification = sharedPreferences.getBoolean(PREF_KEY_WOOT1_SHOW_JOBSCHEDULER_NOTIFICATION, false)
 
     return if(showNotification) {
+        println("4444-951")
         true
     }else{
+        println("4444-952")
         /*** save string to preferences */
         PreferenceManager.getDefaultSharedPreferences(pContext)
                 .edit()
@@ -261,18 +253,21 @@ fun showJobNotification(pContext: Context): Boolean {
 }
 
 fun isNewDeal(pContext: Context, pNotificationText: String): Boolean {
-    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(pContext)
-    var savedNotification = sharedPreferences.getString(PREF_KEY_WOOT1_MEH_DEAL_STRING, "")
+//    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(pContext)
+//    var savedNotification = sharedPreferences.getString(PREF_KEY_WOOT1_MEH_DEAL_STRING, "")
 
-    if(savedNotification.equals(pNotificationText,true))
+//    if(savedNotification.equals(pNotificationText,true))
+    if(pNotificationText.equals("New: ",true))
     {
+        println("4444-956")
         return false
-    }else{
-        /*** save string to preferences */
-        PreferenceManager.getDefaultSharedPreferences(pContext)
-                .edit()
-                .putString(PREF_KEY_WOOT1_MEH_DEAL_STRING, pNotificationText)
-                .apply()
+    } else {
+//        /*** save string to preferences */
+//        PreferenceManager.getDefaultSharedPreferences(pContext)
+//                .edit()
+//                .putString(PREF_KEY_WOOT1_MEH_DEAL_STRING, pNotificationText)
+//                .apply()
+        println("4444-957")
         return true
     }
 }

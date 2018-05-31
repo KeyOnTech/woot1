@@ -14,7 +14,7 @@ class AdapterViewPagerActivityMain (fragmentManager: FragmentManager, private va
         FragmentStatePagerAdapter(fragmentManager) {
 
     override fun getItem(position: Int): Fragment {
-        println("photo = " + modelMehDealPhotos[position].Url)
+//        println("photo = " + modelMehDealPhotos[position].Url)
         return FragmentViewPager1.newInstance(modelMehDealPhotos[position].Url)
     }
 
